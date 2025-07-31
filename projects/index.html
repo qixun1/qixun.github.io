@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="description" content="Statistical Confidence Rescoring for Robust 3D Scene Graph Generation from Multi-View Images">
+  <meta name="keywords"
+    content="SCRSSG, 3D Mapping, Multi-view Scene Understanding, 3D Scene Graph">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Statistical Confidence Rescoring for Robust 3D Scene Graph Generation from Multi-View Images</title>
+
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-QDKPQMTTL7"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+
+    gtag('config', 'G-QDKPQMTTL7');
+  </script>
+
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro" rel="stylesheet">
+
+  <link rel="stylesheet" href="./static/css/bulma.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-carousel.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-slider.min.css">
+  <link rel="stylesheet" href="./static/css/fontawesome.all.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  <link rel="stylesheet" href="./static/css/index.css">
+  <!-- <link rel="icon" href="./static/images/favicon.svg"> -->
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script defer src="./static/js/fontawesome.all.min.js"></script>
+  <script src="./static/js/bulma-carousel.min.js"></script>
+  <script src="./static/js/bulma-slider.min.js"></script>
+  <script src="./static/js/index.js"></script>
+
+  <!-- <script>
+    // Function to randomly shuffle the first two authors
+    function shuffleFirstTwoAuthors() {
+      var authorContainer = document.querySelector('.publication-authors');
+      var authorBlocks = authorContainer.querySelectorAll('.author-block');
+
+      // Get references to the first two author spans
+      var author1 = authorBlocks[0];
+      var author2 = authorBlocks[1];
+
+      // Determine the order based on a random coin flip (0 or 1)
+      var coinFlip = Math.floor(Math.random() * 2);
+
+      // Swap the order of the first two authors if coinFlip is 1
+      if (coinFlip === 1) {
+        authorContainer.insertBefore(author2, author1);
+      }
+    }
+
+    // Call the shuffle function when the page loads
+    window.onload = shuffleFirstTwoAuthors;
+
+  </script> -->
+</head>
+
+<body>
+
+  <nav class="navbar" role="navigation" aria-label="main navigation">
+    <div class="navbar-brand">
+      <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false">
+        <span aria-hidden="true"></span>
+        <span aria-hidden="true"></span>
+        <span aria-hidden="true"></span>
+      </a>
+    </div>
+    <div class="navbar-menu">
+      <div class="navbar-start" style="flex-grow: 1; justify-content: center;">
+        <!-- <a class="navbar-item" href="https://qixun1.github.io"> -->
+        <a class="navbar-item" href="#">
+          <span class="icon">
+            <i class="fas fa-home"></i>
+          </span>
+        </a>
+
+        <div class="navbar-item has-dropdown is-hoverable">
+          <a class="navbar-link">
+            Related Research
+          </a>
+          <div class="navbar-dropdown">
+            <a class="navbar-item" href="https://qixun1.github.io/projects/SCRSSG">
+              SCRSSG
+            </a>
+            <a class="navbar-item" href="https://shunchengwu.github.io/MonoSSG">
+              JointSSG
+            </a>
+            <a class="navbar-item" href="https://shunchengwu.github.io/SceneGraphFusion/">
+              SceneGraphFusion
+            </a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </nav>
+
+
+  <section class="hero">
+    <div class="hero-body">
+      <div class="container is-max-desktop">
+        <div class="columns is-centered">
+          <div class="column has-text-centered">
+            <h1 class="title is-2 publication-title">Statistical Confidence Rescoring for Robust 3D Scene Graph Generation from Multi-View Images</h1>
+            <h2 class="title is-6 publlication-title">ICCV 2025</h2>
+            <div class="is-size-6 publication-authors">
+              <span class="author-block">
+                <a href=""><i>Qi Xun Yeo</i></a>,
+              </span>
+              <span class="author-block">
+                <a href=""><i>Yanyan Li</i></a>,
+              </span>
+              <span class="author-block">
+                <a href=""><i>Gim Hee Lee</i></a>,
+              </span>
+              
+            </div>
+
+            <div class="is-size-6 publication-authors">
+              <span class="author-block">National University of Singapore</span>
+              <br>
+            </div>
+
+            <div class="column has-text-centered">
+              <div class="publication-links">
+                <!-- PDF Link. -->
+                <!-- <span class="link-block">
+                  <a href="assets/pdf/SCRSSG.pdf" class="external-link button is-normal ">
+                    <span class="icon">
+                      <i class="fas fa-file-pdf"></i>
+                    </span>
+                    <span>Paper</span>
+                  </a>
+                </span> -->
+                <span class="link-block">
+                  <a href="" class="external-link button is-normal ">
+                    <span class="icon">
+                      <i class="ai ai-arxiv"></i>
+                    </span>
+                    <span>arXiv</span>
+                  </a>
+                </span>
+                <!-- Video Link. -->
+                <!-- <span class="link-block">
+                  <a href="" class="external-link button is-normal ">
+                    <span class="icon">
+                      <i class="fab fa-youtube"></i>
+                    </span>
+                    <span>Video</span>
+                  </a>
+                </span> -->
+                <!-- <span class="link-block">
+                  <a href="https://youtu.be/56jEFyrqqpo" class="external-link button is-normal ">
+                    <span class="icon">
+                      <i class="fab fa-youtube"></i>
+                    </span>
+                    <span>Tutorial Video</span>
+                  </a>
+                </span> -->
+                <!-- Code Link. -->
+                <span class="link-block">
+                  <a href="https://github.com/qixun1/scrsssg" class="external-link button is-normal ">
+                    <span class="icon">
+                      <i class="fab fa-github"></i>
+                    </span>
+                    <span>Code (Coming Soon)</span>
+                  </a>
+                </span>
+              </div>
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="hero teaser">
+    <div class="container is-max-desktop">
+      <div class="hero-body">
+        <!-- <video id="teaser" autoplay muted loop playsinline height="100%">
+          <source src="./static/videos/splash.mp4" type="video/mp4">
+        </video> -->
+        <img src="./static/images/teaser.png" />
+        <h2 class="subtitle has-text-centered">
+          <span class="coolname">SCRSSG</span> builds robust 3D scene graphs that aggregates cleaner node representations
+          using SAM masks and statistical priors for more accurate 3D scene graph estimation.
+        </h2>
+      </div>
+    </div>
+  </section>
+
+
+  <section class="section">
+    <div class="container is-max-desktop">
+
+      <!-- Paper video. -->
+      <!-- <div class="columns is-centered has-text-centered">
+        <div class="column is-four-fifths">
+          <h2 class="title is-3">Video</h2>
+          <div class="publication-video">
+            <iframe src="https://www.youtube.com/embed/mRhNkQwRYnc" title="YouTube video player" frameborder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture;"
+              allowfullscreen></iframe>
+          </div>
+        </div>
+      </div> -->
+      <!--/ Paper video. -->
+
+      <!-- Abstract. -->
+      <div class="columns is-centered has-text-centered">
+        <div class="column is-four-fifths">
+          <h2 class="title is-3">Abstract</h2>
+          <div class="content has-text-justified">
+            <p>
+              Modern 3D semantic scene graph estimation methods utilise ground truth 3D annotations to accurately predict target objects,
+               predicates, and relationships. In the absence of given 3D ground truth representations, we explore leveraging only multi-view RGB images to tackle this task.
+                To attain robust features for accurate scene graph estimation, we must overcome the noisy reconstructed pseudo point-based geometry from predicted depth maps and reduce the amount of background noise present in multi-view image features.
+                 The key is to enrich node and edge features with accurate semantic and spatial information and through neighbouring relations.
+                  We obtain semantic masks to guide feature aggregation to filter background features and design a novel method to incorporate neighbouring node information to aid robustness of our scene graph estimates.
+                   Furthermore, we leverage on explicit statistical priors calculated from the training summary statistics to refine node and edge predictions based on their one-hop neighbourhood.
+                    Our experiments show that our method outperforms current methods purely using multi-view images as the initial input.
+            </p>
+          </div>
+        </div>
+      </div>
+      <!--/ Abstract. -->
+
+    </div>
+  </section>
+
+
+  <section class="section">
+    <div class="container is-max-desktop">
+
+      <div class="columns is-centered">
+        <div class="column is-full-width">
+          <h2 class="title is-3">Approach</h2>
+          <div class="content has-text-justified">
+            <p>
+              <span class="coolname">SCRSSG</span> builds a 3D scene graph from a sequence of
+              posed RGB images. We used a pretrained depth estimator model, DepthAnything, to predict metric depth. 
+              Next, we run an RGB-D SLAM system to obtain predicted point clouds and covisibility graphs. 
+              Our MFI module initializes the node features of the scene graph by combining multi-view image representations
+              from a pretrained image encoder with PointNet features with enhancement from SAM masks. 
+              Then, our RSNGNN module integrates both geometric and spatial features into the initial node feature via residual connections.
+              Lastly, our CR module refines node and predicate predictions using prior knowledge to mitigate the impact of incorrect initial predictions
+              The resulting 3D scene graph contains more prior information from geometric, spatial, and statistical sources of the
+              scene, which enhances the richness of the node and predicate representations to improve the model's performance on 3D scene graph estimation.
+            </p>
+            <img src="./static/images/framework.png" />
+          </div>
+          <br />
+        </div>
+      </div>
+
+
+      
+      <!--/ Long-tailed concepts -->
+
+    </div>
+  </section>
+
+
+  <section class="hero is-light is-small">
+    <div class="hero-body">
+      <div class="container">
+        <div id="results-carousel" class="carousel results-carousel">
+          <div class="item">
+            <img src="./static/images/qualitative.png" class="carousel-image-responsive"/>
+          </div>
+          <div class="item">
+            <img src="./static/images/qualitative1.png" class="carousel-image-responsive"/>
+          </div>
+          <div class="item">
+            <img src="./static/images/qualitative2.png" class="carousel-image-responsive"/>
+          </div>
+          <div class="item">
+            <img src="./static/images/qualitative_full.png" class="carousel-image-responsive"/>
+          </div>
+          <div class="item">
+            <img src="./static/images/qualitative_full1.png" class="carousel-image-responsive"/>
+          </div>
+          <div class="item">
+            <img src="./static/images/qualitative_full2.png" class="carousel-image-responsive"/>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- <section class="section" id="concurrent work">
+    <div class="container is-max-desktop content"> -->
+      <!-- Concurrent Work. -->
+      <!-- <div class="columns is-centered">
+        <div class="column is-full-width">
+          <h2 class="title is-3">Concurrent work</h2>
+
+          <div class="content has-text-justified">
+            <p>
+              Given the pace of AI research these days, it is extremely challenging to keep up with all of the work
+              around foundation models and open-set perception. We list below a few key approaches that we have come
+              across after finalizing the ConceptGraphs system. If we may have inadvertently missed out on key
+              concurrent work, please reach out to us over email (or better, open a pull request on <a
+                href="https://github.com/concept-graphs/concept-graphs.github.io">our GitHub page</a>).
+            </p>
+            <p>
+              <a href="https://openreview.net/forum?id=gVBvtRqU1_">OVIR-3D</a> is an open-vocabulary 3D instance-level
+              mapping system that reconstructs an objects from RGB-D images and known poses. Each object is additionally
+              assigned a CLIP embedding for text-query-based retrieval.
+            </p>
+            <p>
+              <a href="https://openmask3d.github.io/">OpenMask3D</a> performs 3D instance segmentation (on pointcloud
+              data) based on open-vocabulary queries (specified as text).
+            </p>
+            <p>
+              <a href="https://openreview.net/forum?id=cjEI5qXoT0">OVSG</a> reconstructs open-vocabulary 3D scene graphs
+              using OVIR-3D and a graph network encoder.
+            </p>
+            <p>
+              <a href="https://sayplan.github.io/">SayPlan</a> demonstrates an efficient planning mechanism using LLMs
+              and 3D Scene Graphs (assumed available).
+            </p>
+          </div>
+        </div>
+      </div> -->
+      <!--/ Concurrent Work. -->
+
+    <!-- </div>
+  </section> -->
+
+
+  <section class="section" id="BibTeX">
+    <div class="container is-max-desktop content">
+      <h2 class="title">BibTeX (Coming Soon)</h2>
+      <!--/ Add bibtex here. -->
+      <pre><code></code></pre>
+    </div>
+  </section>
+
+
+  <footer class="footer">
+    <div class="container">
+      <div class="content has-text-centered">
+        <!-- <a class="icon-link" href="./assets/pdf/SCRSSG.pdf">
+          <i class="fas fa-file-pdf"></i>
+        </a> -->
+        <a class="icon-link" href="https://github.com/qixun1" class="external-link" disabled>
+          <i class="fab fa-github"></i>
+        </a>
+        <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">
+          <img alt="Creative Commons License" style="border-width:0"
+            src="https://i.creativecommons.org/l/by-sa/4.0/88x31.png" />
+        </a>
+      </div>
+      <div class="columns is-centered">
+        <div class="column is-8">
+          <div class="content">
+            <p>
+              This website adapted from the Nerfies templates, which is licensed under a <a rel="license"
+                href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0
+                International License</a>.
+            </p>
+            <p>
+              This means you are free to borrow the <a
+                href="https://github.com/concept-fusion/concept-fusion.github.io">source code</a> of this website,
+              we just ask that you link back to the <a href="https://github.com/nerfies/nerfies.github.io">Nerfies
+                source code</a> in the footer.
+              Please remember to remove the analytics code included in the header of the website which you do not want
+              on your website.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+</body>
+
+</html>
