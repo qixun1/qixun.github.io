@@ -4,7 +4,15 @@ This is the repository that contains source code for the [SCRSSG website](https:
 
 # # BibTeX entry for SCRSSG
 ```
-
+@misc{yeo2025statisticalconfidencerescoringrobust,
+      title={Statistical Confidence Rescoring for Robust 3D Scene Graph Generation from Multi-View Images}, 
+      author={Qi Xun Yeo and Yanyan Li and Gim Hee Lee},
+      year={2025},
+      eprint={2508.06546},
+      archivePrefix={arXiv},
+      primaryClass={cs.CV},
+      url={https://arxiv.org/abs/2508.06546}, 
+}
 ```
 
 # Website License
